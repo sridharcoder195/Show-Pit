@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+
+</head >
+   <body class="main-layout" style="background-color: #ff4e5b;" >
+
+	<!-- new collection section end -->
+	<!-- New Arrivals section start -->
+    <div>
+    	<div class="container">
+    		<div class="row">
+
+    		</div>
+
+					<div class="best_shoes">
+
+					</div>
+
+    		<div class="row">
+
+
+				{% for i in search %}
+    			<div class="col-sm-4">
+
+    				<div class="best_shoes" >
+    					<p class="best_text" >{{i.name}}</p>
+    					<figure ><div class="shoes_icon"><a href={{i.get_urls}}><img src="{{i.img.url}}" style="width:200px;" href={{i.get_urls}} ></a></div></figure>
+    					<div class="star_text">
+    						<div class="left_part">
+    							<p>{{i.desc|truncatechars:30}}</p>
+								<p>stocks left:{{i.stock}}</p>
+    						</div>
+    						<div class="right_part">
+    							<div class="shoes_price">₹ <span style="color: #ff4e5b;">{{i.price}}</span></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+				{% endfor %}
+
+
+    		</div>
+
+    	</div>
+    </div>
+   	<!-- New Arrivals section end -->
+   	<!-- contact section start -->
+                  <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript -->
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+
+
+$('#myCarousel').carousel({
+            interval: false
+        });
+
+        //scroll slides on swipe for touch enabled devices
+
+        $("#myCarousel").on("touchstart", function(event){
+
+            var yClick = event.originalEvent.touches[0].pageY;
+            $(this).one("touchmove", function(event){
+
+                var yMove = event.originalEvent.touches[0].pageY;
+                if( Math.floor(yClick - yMove) > 1 ){
+                    $(".carousel").carousel('next');
+                }
+                else if( Math.floor(yClick - yMove) < -1 ){
+                    $(".carousel").carousel('prev');
+                }
+            });
+            $(".carousel").on("touchend", function(){
+                $(this).off("touchmove");
+            });
+        });
+      </script></nav></body>
+
+{% endblock %}
